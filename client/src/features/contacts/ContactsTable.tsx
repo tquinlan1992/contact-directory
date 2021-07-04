@@ -12,10 +12,14 @@ import {
 export const ContactsTable: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   useEffect(() => {
-    getContacts().then((contacts) => {
-      console.log("contacts", contacts);
-      setContacts(contacts);
-    });
+    getContacts()
+      .then((contacts) => {
+        console.log("contacts", contacts);
+        setContacts(contacts);
+      })
+      .catch((e) => {
+        alert(e);
+      });
   }, []);
   const rows = contacts.map(({ name, email, address }) => (
     <TableRow key={name} columns={[name, email, address || ""]} />

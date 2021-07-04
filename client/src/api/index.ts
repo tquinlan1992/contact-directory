@@ -16,6 +16,6 @@ export const getContacts = async (): Promise<Contact[]> => {
   if (response.ok) {
     return response.json();
   } else {
-    return [];
+    throw `Error retreiving contacts with status code: ${response.status}`;
   }
 };

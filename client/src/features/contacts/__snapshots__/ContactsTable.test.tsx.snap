@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactsTable on success retreiving contacts should render the contacts in table 1`] = `
+<Fragment>
+  <h1>
+    ContactsTable
+  </h1>
+  <Table>
+    <TableHeaders
+      headers={
+        Array [
+          "Name",
+          "Email",
+          "Address",
+        ]
+      }
+    />
+    <TableBody />
+  </Table>
+</Fragment>
+`;

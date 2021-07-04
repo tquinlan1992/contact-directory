@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table with header, body, rows renders all the children 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        name
+      </th>
+      <th>
+        email
+      </th>
+      <th>
+        address
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        row_name
+      </td>
+      <td>
+        row_email
+      </td>
+      <td>
+        row_address
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
