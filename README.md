@@ -2,6 +2,16 @@ To start app:
 
 `npm run ci && npm run start`
 
+# Directory set up
+
+Client
+src/api: functions for API interactions, and corresponding Typescript types
+src/App.tsx: the main <App> component
+src/index.tsx Renders app onto root id
+src/components: components that are reused in multiple places
+src/features:
+src/features/contacts: components for displaying the todo list
+
 #
 
 Full Stack Software Engineer Sample App

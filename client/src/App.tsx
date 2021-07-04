@@ -1,4 +1,7 @@
 import React from 'react';
+import { getTestApi } from './api';
+
+getTestApi();
 
 export default function App() {
   return (
