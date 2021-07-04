@@ -1,3 +1,9 @@
+To start app:
+
+`npm run ci && npm run start`
+
+#
+
 Full Stack Software Engineer Sample App
 
 For the next step of the interview process we would like you to put together a simple web application. The application should be a single page application (SPA) that makes AJAX calls to HTTP endpoints in the backend of your app.
