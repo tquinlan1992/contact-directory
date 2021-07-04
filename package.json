@@ -1,0 +1,22 @@
+{
+  "name": "contact-directory",
+  "version": "1.0.0",
+  "description": "Full Stack Software Engineer Sample App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-client": "cd client && npm run build",
+    "start-server": "cd server && npm start",
+    "start": "npm run build-client && npm run start-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tquinlan1992/contact-directory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tquinlan1992/contact-directory/issues"
+  },
+  "homepage": "https://github.com/tquinlan1992/contact-directory#readme"
+}
