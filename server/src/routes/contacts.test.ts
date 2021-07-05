@@ -36,8 +36,8 @@ describe("contactsRouter", () => {
     });
   });
   describe("post", () => {
-    describe("with all required fields", () => {
-      it("should create the contacts", (done) => {
+    describe("with all fields", () => {
+      it("should create the contact", (done) => {
         request(app)
           .post("/")
           .set("Content-Type", "application/json")
@@ -46,6 +46,24 @@ describe("contactsRouter", () => {
               name: "contact_name",
               email: "contact_email@test.com",
               address: "contact_address",
+            })
+          )
+          .expect(201)
+          .then(() => {
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe("with just name and email", () => {
+      it("should create the contact as address is optional", (done) => {
+        request(app)
+          .post("/")
+          .set("Content-Type", "application/json")
+          .send(
+            JSON.stringify({
+              name: "contact_name",
+              email: "contact_email@test.com",
             })
           )
           .expect(201)
