@@ -36,22 +36,43 @@ describe("contactsRouter", () => {
     });
   });
   describe("post", () => {
-    it("should create the contacts", (done) => {
-      request(app)
-        .post("/")
-        .set("Content-Type", "application/json")
-        .send(
-          JSON.stringify({
-            name: "contact_name",
-            email: "contact_email@test.com",
-            address: "contact_address",
+    describe("with all required fields", () => {
+      it("should create the contacts", (done) => {
+        request(app)
+          .post("/")
+          .set("Content-Type", "application/json")
+          .send(
+            JSON.stringify({
+              name: "contact_name",
+              email: "contact_email@test.com",
+              address: "contact_address",
+            })
+          )
+          .expect(201)
+          .then(() => {
+            done();
           })
-        )
-        .expect(201)
-        .then((res: any) => {
-          done();
-        })
-        .catch(done);
+          .catch(done);
+      });
+    });
+    describe("with wrongly formatted email", () => {
+      it("should reject the request with a status of 400", (done) => {
+        request(app)
+          .post("/")
+          .set("Content-Type", "application/json")
+          .send(
+            JSON.stringify({
+              name: "contact_name",
+              email: "wrongly_formatted_email",
+              address: "contact_address",
+            })
+          )
+          .expect(400)
+          .then(() => {
+            done();
+          })
+          .catch(done);
+      });
     });
   });
 });

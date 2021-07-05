@@ -1,5 +1,6 @@
 import express from "express";
 import fs from "fs";
+import validate from "validate.js";
 
 const contactsRouter = express.Router();
 
@@ -21,33 +22,55 @@ contactsRouter.get("/", (req, res) => {
   });
 });
 
+const constraints = {
+  name: {
+    presence: true,
+    type: "string",
+  },
+  email: {
+    presence: true,
+    type: "string",
+    email: true,
+  },
+  address: {
+    type: "string",
+  },
+};
+
 contactsRouter.post("/", (req, res) => {
-  fs.readFile(dbJsonPath, (err, buf) => {
-    if (err) {
-      res.status(500);
-    } else {
-      const dbData = JSON.parse(String(buf)) as DBJson;
-      const newContact = {
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address,
-      };
-      const dbDataWithAddedContact: DBJson = [...dbData, newContact];
-      fs.writeFile(
-        dbJsonPath,
-        JSON.stringify(dbDataWithAddedContact),
-        (err) => {
-          if (err) {
-            console.log("error creating contact");
-            res.status(500);
-          } else {
-            res.status(201);
-            res.end();
+  const { name, email, address } = req.body;
+  const newContact = {
+    name,
+    email,
+    address,
+  };
+  const validationErrors = validate(newContact, constraints);
+  if (validationErrors) {
+    res.status(400);
+    res.end();
+  } else {
+    fs.readFile(dbJsonPath, (err, buf) => {
+      if (err) {
+        res.status(500);
+      } else {
+        const dbData = JSON.parse(String(buf)) as DBJson;
+        const dbDataWithAddedContact: DBJson = [...dbData, newContact];
+        fs.writeFile(
+          dbJsonPath,
+          JSON.stringify(dbDataWithAddedContact),
+          (err) => {
+            if (err) {
+              console.log("error creating contact");
+              res.status(500);
+            } else {
+              res.status(201);
+              res.end();
+            }
           }
-        }
-      );
-    }
-  });
+        );
+      }
+    });
+  }
 });
 
 export { contactsRouter };
