@@ -92,5 +92,23 @@ describe("contactsRouter", () => {
           .catch(done);
       });
     });
+    describe("with name empty", () => {
+      it("should reject the request with a status of 400", (done) => {
+        request(app)
+          .post("/")
+          .set("Content-Type", "application/json")
+          .send(
+            JSON.stringify({
+              name: "",
+              email: "contact_email@email.com",
+            })
+          )
+          .expect(400)
+          .then(() => {
+            done();
+          })
+          .catch(done);
+      });
+    });
   });
 });

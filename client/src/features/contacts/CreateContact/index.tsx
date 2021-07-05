@@ -1,6 +1,22 @@
 import React, { useState } from "react";
 import { createContact } from "../../../api";
 import { Form, FormButton, TextInput } from "../../../components/Form";
+import validate from "validate.js";
+
+const constraints = {
+  name: {
+    presence: { allowEmpty: false },
+    type: "string",
+  },
+  email: {
+    presence: { allowEmpty: false },
+    type: "string",
+    email: true,
+  },
+  address: {
+    type: "string",
+  },
+};
 
 const useCreateContact = () => {
   const [name, setName] = useState("");
@@ -13,35 +29,24 @@ const useCreateContact = () => {
     setEmail,
     address,
     setAddress,
-    validate: () => validateCreateContact({ name, email, address }),
+    validate: () => validate({ name, email, address }, constraints),
   };
-};
-
-const validateCreateContact = ({
-  name,
-  email,
-  address,
-}: {
-  name?: string;
-  email?: string;
-  address?: string;
-}) => {
-  return !!(name && email && address);
 };
 
 export const CreateContact: React.FC = () => {
   const { name, setName, email, setEmail, address, setAddress, validate } =
     useCreateContact();
   const handleCreateContact = async () => {
-    if (validate()) {
+    const validationErrors = validate();
+    if (!validationErrors) {
       try {
-        const result = await createContact({ name, email, address });
+        await createContact({ name, email, address });
         alert("created contact");
       } catch (e) {
         alert("error creating contact");
       }
     } else {
-      alert("fill out all fields please");
+      alert(JSON.stringify(validationErrors));
     }
   };
   return (

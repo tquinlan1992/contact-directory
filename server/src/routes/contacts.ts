@@ -24,11 +24,11 @@ contactsRouter.get("/", (req, res) => {
 
 const constraints = {
   name: {
-    presence: true,
+    presence: { allowEmpty: false },
     type: "string",
   },
   email: {
-    presence: true,
+    presence: { allowEmpty: false },
     type: "string",
     email: true,
   },
