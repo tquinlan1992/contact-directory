@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build-client": "cd client && npm run build",
-    "start-server": "cd server && npm start",
-    "start": "npm run build-client && npm run start-server",
+    "build-server": "cd server && npm run build",
+    "build": "npm run build-client && npm run build-server",
+    "start": "cd server && npm start",
     "ci": "cd client && npm ci && cd ../server && npm ci",
     "watch-client": "cd client && npm start",
     "test-watch-client": "cd client && npm run test-watch",
