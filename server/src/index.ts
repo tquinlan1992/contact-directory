@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import fs from "fs";
+import { contactsRouter } from "./routes/contacts";
 const app = express();
 const port = 8080; // default port to listen
 
@@ -43,16 +44,7 @@ app.get("/test", (req, res) => {
   res.json("test response");
 });
 
-app.get("/contacts", (req, res) => {
-  fs.readFile(__dirname + "/db.json", function (err, buf) {
-    if (err) {
-      console.log("error", err);
-    }
-    const dbData = JSON.parse(buf.toString());
-
-    res.json(dbData);
-  });
-});
+app.use("/contacts", contactsRouter);
 
 // start the express server
 app.listen(port, () => {
