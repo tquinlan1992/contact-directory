@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createContact } from "../../../api";
 import { Form, FormButton, TextInput } from "../../../components/Form";
 
 const useCreateContact = () => {
@@ -31,9 +32,14 @@ const validateCreateContact = ({
 export const CreateContact: React.FC = () => {
   const { name, setName, email, setEmail, address, setAddress, validate } =
     useCreateContact();
-  const handleCreateContact = () => {
+  const handleCreateContact = async () => {
     if (validate()) {
-      alert("valid");
+      try {
+        const result = await createContact({ name, email, address });
+        alert("created contact");
+      } catch (e) {
+        alert("error creating contact");
+      }
     } else {
       alert("fill out all fields please");
     }
