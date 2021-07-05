@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactsPage should render the table and create contact form 1`] = `
+<div
+  className="contacts_page"
+>
+  <div
+    className="contacts_page-create_contact"
+  >
+    <CreateContact />
+  </div>
+  <ContactsTable />
+</div>
+`;

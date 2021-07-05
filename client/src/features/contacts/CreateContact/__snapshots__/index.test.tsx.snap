@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateContact should render the name, email, address input fields 1`] = `
+<Form>
+  <TextInput
+    label="Name"
+    onChange={[Function]}
+    value=""
+  />
+  <TextInput
+    label="Email"
+    onChange={[Function]}
+    value=""
+  />
+  <TextInput
+    label="Address"
+    onChange={[Function]}
+    value=""
+  />
+  <FormButton
+    onClick={[Function]}
+  >
+    Create Contact
+  </FormButton>
+</Form>
+`;

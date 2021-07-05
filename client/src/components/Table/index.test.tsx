@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, { render } from "enzyme";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
-import { Table, TableBody, TableHeaders, TableRow } from "./Table";
+import { Table, TableBody, TableHeaders, TableRow } from ".";
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("Table", () => {

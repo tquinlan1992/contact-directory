@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Contact, getContacts } from "../../api";
+import { Contact, getContacts } from "../../../api";
 import {
   Table,
   TableBody,
   TableHeaders,
   TableRow,
-} from "../../components/Table";
+} from "../../../components/Table";
 
 export const ContactsTable: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);

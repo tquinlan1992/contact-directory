@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form components renders all the form fields 1`] = `
+<div
+  class="form"
+>
+  <div
+    class="form-input-container"
+  >
+    <label
+      class="input-label"
+    >
+      text_input_label
+    </label>
+    <input
+      type="text"
+      value="text_input_value"
+    />
+  </div>
+  <button />
+</div>
+`;

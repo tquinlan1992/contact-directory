@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormButton, TextInput } from "../../components/Form";
+import { Form, FormButton, TextInput } from "../../../components/Form";
 
 const useCreateContact = () => {
   const [name, setName] = useState("");
@@ -29,7 +29,8 @@ const validateCreateContact = ({
 };
 
 export const CreateContact: React.FC = () => {
-  const { setName, setEmail, setAddress, validate } = useCreateContact();
+  const { name, setName, email, setEmail, address, setAddress, validate } =
+    useCreateContact();
   const handleCreateContact = () => {
     if (validate()) {
       alert("valid");
@@ -39,9 +40,9 @@ export const CreateContact: React.FC = () => {
   };
   return (
     <Form>
-      <TextInput onChange={setName} label="Name" />
-      <TextInput onChange={setEmail} label="Email" />
-      <TextInput onChange={setAddress} label="Address" />
+      <TextInput value={name} onChange={setName} label="Name" />
+      <TextInput value={email} onChange={setEmail} label="Email" />
+      <TextInput value={address} onChange={setAddress} label="Address" />
       <FormButton onClick={handleCreateContact}>Create Contact</FormButton>
     </Form>
   );

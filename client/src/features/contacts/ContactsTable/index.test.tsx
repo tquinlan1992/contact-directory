@@ -1,10 +1,10 @@
 import React from "react";
 import Enzyme, { shallow } from "enzyme";
-import { ContactsTable } from "./ContactsTable";
+import { ContactsTable } from ".";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock("../../api", () => ({
+jest.mock("../../../api", () => ({
   getContacts: Promise.resolve([
     { name: "name", email: "email", address: "address" },
   ]),
