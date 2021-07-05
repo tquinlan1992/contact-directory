@@ -1,13 +1,3 @@
-import React from 'react';
-import { getTestApi } from './api';
-import { ContactsTable } from './features/contacts/ContactsTable';
+import { ContactsPage } from "./features/contacts/ContactsPage";
 
-getTestApi();
-
-export default function App() {
-  return (
-    <div>
-      <ContactsTable />
-    </div>
-  );
-}
+export const App: React.FC = () => <ContactsPage />;

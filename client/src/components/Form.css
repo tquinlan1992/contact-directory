@@ -1,0 +1,14 @@
+.form {
+  border-width: 2px;
+  border-style: solid;
+  border-color: grey;
+  padding: 10px;
+}
+
+.form-input-container {
+  padding: 5px;
+}
+
+.input-label {
+  padding-right: 5px;
+}
