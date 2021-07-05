@@ -7,6 +7,8 @@ type DBJson = { name: string; email: string; address?: string }[];
 
 const dbJsonPath = __dirname + "/../db.json";
 
+contactsRouter.use(express.json());
+
 contactsRouter.get("/", (req, res) => {
   fs.readFile(dbJsonPath, (err, buf) => {
     if (err) {
@@ -22,11 +24,9 @@ contactsRouter.get("/", (req, res) => {
 contactsRouter.post("/", (req, res) => {
   fs.readFile(dbJsonPath, (err, buf) => {
     if (err) {
-      console.log("error reading db.json", err);
       res.status(500);
     } else {
       const dbData = JSON.parse(String(buf)) as DBJson;
-      console.log("req.body", req.body);
       const newContact = {
         name: req.body.name,
         email: req.body.email,
@@ -41,7 +41,8 @@ contactsRouter.post("/", (req, res) => {
             console.log("error creating contact");
             res.status(500);
           } else {
-            res.json(201);
+            res.status(201);
+            res.end();
           }
         }
       );

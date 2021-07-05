@@ -44,8 +44,6 @@ app.get("/test", (req, res) => {
   res.json("test response");
 });
 
-app.use(express.json());
-
 app.use("/contacts", contactsRouter);
 
 // start the express server

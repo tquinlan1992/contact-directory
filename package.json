@@ -4,17 +4,19 @@
   "description": "Full Stack Software Engineer Sample App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build-client": "cd client && npm run build",
     "start-server": "cd server && npm start",
     "start": "npm run build-client && npm run start-server",
     "ci": "cd client && npm ci && cd ../server && npm ci",
     "watch-client": "cd client && npm start",
     "test-watch-client":"cd client && npm run test-watch",
-    "test-client": "cd client && npm run test",
+    "test-client": "cd client && npm test",
+    "test-watch-server": "cd server && npm run test-watch",
+    "test-server": "cd server && npm test",
     "watch-server-start": "cd server && npm run start-dev",
     "watch-server-build": "cd server && npm run watch",
-    "watch": "npm-run-all --parallel watch-server-build watch-server-start watch-client"
+    "watch": "npm-run-all --parallel watch-server-build watch-server-start watch-client",
+    "test": "npm run test-client && npm run test-server"
   },
   "repository": {
     "type": "git",

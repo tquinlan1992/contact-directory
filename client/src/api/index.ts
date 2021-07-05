@@ -20,7 +20,7 @@ export const getContacts = async (): Promise<Contact[]> => {
   }
 };
 
-export const createContact = async (contact: Contact): Promise<Contact[]> => {
+export const createContact = async (contact: Contact): Promise<null> => {
   const response = await fetch(`${baseUrl}/contacts`, {
     method: "POST",
     body: JSON.stringify(contact),
@@ -29,7 +29,7 @@ export const createContact = async (contact: Contact): Promise<Contact[]> => {
     },
   });
   if (response.ok) {
-    return response.json();
+    return null;
   } else {
     throw `Error retreiving contacts with status code: ${response.status}`;
   }
