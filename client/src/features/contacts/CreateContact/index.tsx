@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { createContact } from "../../../api";
 import { Form, FormButton, TextInput } from "../../../components/Form";
 import validate from "validate.js";
+import { ContactsPageContext } from "../ContactsPage";
 
 const constraints = {
   name: {
@@ -30,18 +31,28 @@ const useCreateContact = () => {
     address,
     setAddress,
     validate: () => validate({ name, email, address }, constraints),
+    getContact: () => ({ name, email, address }),
   };
 };
 
 export const CreateContact: React.FC = () => {
-  const { name, setName, email, setEmail, address, setAddress, validate } =
-    useCreateContact();
+  const { addContact } = useContext(ContactsPageContext);
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    address,
+    setAddress,
+    validate,
+    getContact,
+  } = useCreateContact();
   const handleCreateContact = async () => {
     const validationErrors = validate();
     if (!validationErrors) {
       try {
-        await createContact({ name, email, address });
-        alert("created contact");
+        await createContact(getContact());
+        addContact(getContact());
       } catch (e) {
         alert("error creating contact");
       }

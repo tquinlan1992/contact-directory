@@ -1,21 +1,21 @@
 import React from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
-import { Contact, getContacts } from "../../../api";
+import { getContacts } from "../../../api";
 import {
   Table,
   TableBody,
   TableHeaders,
   TableRow,
 } from "../../../components/Table";
+import { ContactsPageContext } from "../ContactsPage";
 
 export const ContactsTable: React.FC = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  const { contacts, setContacts } = useContext(ContactsPageContext);
   useEffect(() => {
     getContacts()
-      .then((contacts) => {
-        console.log("contacts", contacts);
-        setContacts(contacts);
+      .then((newContacts) => {
+        setContacts(newContacts);
       })
       .catch((e) => {
         alert(e);

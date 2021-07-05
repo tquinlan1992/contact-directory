@@ -4,11 +4,21 @@ exports[`ContactsPage should render the table and create contact form 1`] = `
 <div
   className="contacts_page"
 >
-  <div
-    className="contacts_page-create_contact"
+  <ContextProvider
+    value={
+      Object {
+        "addContact": [Function],
+        "contacts": Array [],
+        "setContacts": [Function],
+      }
+    }
   >
-    <CreateContact />
-  </div>
-  <ContactsTable />
+    <div
+      className="contacts_page-create_contact"
+    >
+      <CreateContact />
+    </div>
+    <ContactsTable />
+  </ContextProvider>
 </div>
 `;
