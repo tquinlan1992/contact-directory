@@ -1,6 +1,22 @@
-To start app:
+# To build and start app:
 
-`npm run ci && npm run start`
+`npm ci && npm run ci && npm run start`
+
+# Dev Environment
+
+Run the npm installations
+
+- `npm ci && npm run ci`
+
+One script to put server and client in watch mode:
+
+- `npm run watch`
+
+To run the scripts in different consoles:
+
+- server compile watch - `watch-server-build`
+- server start in watch mode - `watch-server-start`
+- client - `npm run watch-client`
 
 # Directory set up
 
@@ -10,7 +26,7 @@ src/App.tsx: the main <App> component
 src/index.tsx Renders app onto root id
 src/components: components that are reused in multiple places
 src/features:
-src/features/contacts: components for displaying the todo list
+src/features/contacts: components for displaying the contacts list
 
 #
 

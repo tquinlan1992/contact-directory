@@ -18,7 +18,7 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "start-dev": "nodemon .",
+    "start-dev": "nodemon . --ignore dist/db.json",
     "watch": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
