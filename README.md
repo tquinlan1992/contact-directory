@@ -2,6 +2,12 @@
 
 `npm ci && npm run ci && npm run build && npm run start`
 
+# To Run tests
+
+- `npm test`
+- `npm run test-watch-client`
+- `npm run test-watch-server`
+
 # Dev Environment
 
 Run the npm installations
