@@ -21,8 +21,8 @@ export const ContactsTable: React.FC = () => {
         alert(e);
       });
   }, []);
-  const rows = contacts.map(({ name, email, address }) => (
-    <TableRow key={name} columns={[name, email, address || ""]} />
+  const rows = contacts.map(({ name, email, address, id }) => (
+    <TableRow key={id} columns={[name, email, address || ""]} />
   ));
   return (
     <>

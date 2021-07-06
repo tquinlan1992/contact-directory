@@ -35,13 +35,23 @@ describe("postContacts", () => {
 
   describe("on successful response", () => {
     it("should return contacts", async () => {
-      fetchMock.postOnce(url, 200);
+      fetchMock.postOnce(url, {
+        name: "contact_name",
+        email: "contact_email@email.com",
+        address: "contact_address",
+        id: "random_id",
+      });
       const result = await createContact({
         name: "contact_name",
         email: "contact_email",
         address: "contact_address",
       });
-      expect(result).toEqual(null);
+      expect(result).toEqual({
+        name: "contact_name",
+        email: "contact_email@email.com",
+        address: "contact_address",
+        id: "random_id",
+      });
       expect(fetchMock.calls()[0][0]).toEqual(url);
       expect(fetchMock.calls()[0][1]).toMatchObject({
         body: '{"name":"contact_name","email":"contact_email","address":"contact_address"}',

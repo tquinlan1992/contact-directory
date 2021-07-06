@@ -9,6 +9,7 @@ export interface Contact {
   name: string;
   email: string;
   address?: string;
+  id: string;
 }
 
 export const getContacts = async (): Promise<Contact[]> => {
@@ -20,7 +21,9 @@ export const getContacts = async (): Promise<Contact[]> => {
   }
 };
 
-export const createContact = async (contact: Contact): Promise<null> => {
+export const createContact = async (
+  contact: Omit<Contact, "id">
+): Promise<Contact> => {
   const response = await fetch(`${baseUrl}/contacts`, {
     method: "POST",
     body: JSON.stringify(contact),
@@ -29,7 +32,7 @@ export const createContact = async (contact: Contact): Promise<null> => {
     },
   });
   if (response.ok) {
-    return null;
+    return response.json();
   } else {
     throw `Error retreiving contacts with status code: ${response.status}`;
   }

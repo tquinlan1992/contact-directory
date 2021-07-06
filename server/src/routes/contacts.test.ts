@@ -6,12 +6,16 @@ jest.mock("fs", () => ({
   readFile: jest.fn((path, done) => {
     done(
       null,
-      `[{"name": "contact1_name", "email": "contact1_email", "address": "contact1_address"}]`
+      `[{"name": "contact1_name", "email": "contact1_email", "address": "contact1_address", "id": "1"}]`
     );
   }),
   writeFile: jest.fn((path, data, done) => {
     done(null);
   }),
+}));
+
+jest.mock("uuid", () => ({
+  v4: () => "random_id",
 }));
 
 const app = express();
@@ -28,14 +32,21 @@ describe("contactsRouter", () => {
         .expect(200)
         .then((res: any) => {
           expect(res.text).toEqual(
-            `[{\"name\":\"contact1_name\",\"email\":\"contact1_email\",\"address\":\"contact1_address\"}]`
+            JSON.stringify([
+              {
+                name: "contact1_name",
+                email: "contact1_email",
+                address: "contact1_address",
+                id: "1",
+              },
+            ])
           );
           done();
         })
         .catch(done);
     });
   });
-  describe("post", () => {
+  describe("post create new contact", () => {
     describe("with all fields", () => {
       it("should create the contact", (done) => {
         request(app)
@@ -49,7 +60,22 @@ describe("contactsRouter", () => {
             })
           )
           .expect(201)
-          .then(() => {
+          .then((res: any) => {
+            expect(res.text).toEqual(
+              JSON.stringify({
+                name: "contact_name",
+                email: "contact_email@test.com",
+                address: "contact_address",
+                id: "random_id",
+              })
+            );
+            expect(require("fs").readFile).toHaveBeenCalledTimes(1);
+            expect(require("fs").writeFile.mock.calls[0][0]).toContain(
+              "/db.json"
+            );
+            expect(require("fs").writeFile.mock.calls[0][1]).toEqual(
+              `[{\"name\":\"contact1_name\",\"email\":\"contact1_email\",\"address\":\"contact1_address\",\"id\":\"1\"},{\"name\":\"contact_name\",\"email\":\"contact_email@test.com\",\"address\":\"contact_address\",\"id\":\"random_id\"}]`
+            );
             done();
           })
           .catch(done);
@@ -68,6 +94,13 @@ describe("contactsRouter", () => {
           )
           .expect(201)
           .then(() => {
+            expect(require("fs").readFile).toHaveBeenCalledTimes(1);
+            expect(require("fs").writeFile.mock.calls[0][0]).toContain(
+              "/db.json"
+            );
+            expect(require("fs").writeFile.mock.calls[0][1]).toEqual(
+              `[{\"name\":\"contact1_name\",\"email\":\"contact1_email\",\"address\":\"contact1_address\",\"id\":\"1\"},{\"name\":\"contact_name\",\"email\":\"contact_email@test.com\",\"id\":\"random_id\"}]`
+            );
             done();
           })
           .catch(done);

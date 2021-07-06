@@ -57,9 +57,9 @@ export const CreateContact: React.FC = () => {
     const validationErrors = validate();
     if (!validationErrors) {
       try {
-        await createContact(getContact());
+        const newContact = await createContact(getContact());
         reset();
-        addContact(getContact());
+        addContact(newContact);
       } catch (e) {
         alert("error creating contact");
       }
