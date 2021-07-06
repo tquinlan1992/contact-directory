@@ -32,6 +32,11 @@ const useCreateContact = () => {
     setAddress,
     validate: () => validate({ name, email, address }, constraints),
     getContact: () => ({ name, email, address }),
+    reset: () => {
+      setName("");
+      setEmail("");
+      setAddress("");
+    },
   };
 };
 
@@ -46,12 +51,14 @@ export const CreateContact: React.FC = () => {
     setAddress,
     validate,
     getContact,
+    reset,
   } = useCreateContact();
   const handleCreateContact = async () => {
     const validationErrors = validate();
     if (!validationErrors) {
       try {
         await createContact(getContact());
+        reset();
         addContact(getContact());
       } catch (e) {
         alert("error creating contact");
