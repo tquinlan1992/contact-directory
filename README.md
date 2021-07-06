@@ -1,6 +1,6 @@
 # To build and start app:
 
-`npm ci && npm run ci && && npm run build && npm run start`
+`npm ci && npm run ci && npm run build && npm run start`
 
 # Dev Environment
 
