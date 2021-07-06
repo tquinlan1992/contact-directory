@@ -2,6 +2,8 @@
 
 `npm ci && npm run ci && npm run build && npm run start`
 
+The server/client will be accessable at http://localhost:8080
+
 # To Run tests
 
 - `npm test`
